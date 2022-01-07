@@ -1,6 +1,8 @@
 version: "3.0"
 services:
   mtpytorch_dev: 
-    image: mtpytorch:dev_gpu
+    image: mtpytorch:dev_bczhou
     ports:
       - "10000:22"
+    volumes:
+      - /home/bingcheng.zhou/project:/home/workspace
