@@ -30,7 +30,7 @@ RUN conda install python=3.8.5 && \
 
 COPY ./docker/.ssh /root/.ssh
 
-# RUN chmod -R 700 /root/.ssh && git clone git@github.com:MooreThreadsNDA/mtPyTorch.git && rm -rf /root/.ssh
+RUN chmod -R 700 /root/.ssh
 
 CMD [ "/usr/sbin/sshd", "-D"]
 
