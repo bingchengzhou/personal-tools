@@ -1,0 +1,6 @@
+version: "3.0"
+services:
+  mtpytorch_dev: 
+    image: mtpytorch:dev_gpu
+    ports:
+      - "10000:22"
