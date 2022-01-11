@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.4.2-devel-ubuntu20.04
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    wget openssh-server git curl \
+    wget openssh-server git curl libglib2.0-0 libsm6 libxrender1 libxext6\
     && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:root' | chpasswd
@@ -27,6 +27,7 @@ RUN conda install python=3.8.5 && \
     conda install astunparse numpy ninja pyyaml mkl mkl-include setuptools \
     cmake cffi typing_extensions future six requests dataclasses && \
     conda clean -y -a 
+RUN pip install --no-cache-dir opencv-python==4.1.2.30 
 
 COPY ./docker/.ssh /root/.ssh
 

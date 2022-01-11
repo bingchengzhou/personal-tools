@@ -15,10 +15,12 @@ DOCKER_BUILDKIT dokcer build
 
 - 使用docker swarm启动container或者docker-compose启动container
 ```bash
+docker run -itd --name bczhou mtpytorch:dev_bczhou
+
 # 如果没有启动swarm,必须先docker swarm init
 docker swarm init
-docker stack deploy --with-registry-auth --prune -c deploy-tools/mtPytorchDev/docker-compose.yml bczhou
+docker stack deploy --with-registry-auth --prune -c deploy-tools/mtpytorch/docker-compose.yml bczhou
 
 # docker swarm
-docker-compose -f deploy-tools/mtPytorchDev/docker-compose.yml up -d
+docker-compose -f deploy-tools/mtpytorch/docker-compose.yml up -d
 ```
