@@ -4,7 +4,6 @@ export BUILD_TEST=0
 export USE_CUDA=0
 export MAX_JOBS=16 
 export USE_FBGEMM=0
-export USE_DISTRIBUTED=0
 export MTDNN_ROOT=/home/workspace/mtDNN
 export MTDNN_PLATFORM_NAME="NVIDIA CUDA"
 mkdir -p /etc/OpenCL/vendors

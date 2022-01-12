@@ -30,9 +30,10 @@ RUN conda install python=3.8.5 && \
 COPY ./docker/ocr_requirements.txt requirements.txt
 RUN pip install --no-cache-dir opencv-python==4.1.2.30 scipy==1.7.1 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-# COPY ./docker/.ssh /root/.ssh
 
-# RUN chmod -R 700 /root/.ssh
+COPY ./docker/.ssh /root/.ssh
+
+RUN chmod -R 700 /root/.ssh
 
 CMD [ "/usr/sbin/sshd", "-D"]
 
