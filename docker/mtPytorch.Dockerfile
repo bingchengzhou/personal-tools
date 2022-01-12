@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.4.2-devel-ubuntu20.04
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    wget openssh-server git curl libglib2.0-0 libsm6 libxrender1 libxext6\
+    wget openssh-server vim git curl libglib2.0-0 libsm6 libxrender1 libxext6\
     && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:root' | chpasswd
@@ -27,9 +27,12 @@ RUN conda install python=3.8.5 && \
     conda install astunparse numpy ninja pyyaml mkl mkl-include setuptools \
     cmake cffi typing_extensions future six requests dataclasses && \
     conda clean -y -a 
+
+# RUN pip install --no-cache-dir opencv-python>=4.4.0 scipy==1.7.0 scikit-image==0.18.3 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 COPY ./docker/ocr_requirements.txt requirements.txt
-RUN pip install --no-cache-dir opencv-python==4.1.2.30 scipy==1.7.1 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+# RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+COPY ./docker/set_pytorch_dev.sh  ./set_env.sh
+RUN chmod +x set_env.sh
 # COPY ./docker/.ssh /root/.ssh
 
 # RUN chmod -R 700 /root/.ssh
