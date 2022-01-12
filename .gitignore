@@ -5,4 +5,6 @@
 *.cubin
 *.fatbin
 
+.vscode
+.history
 docker/.ssh
